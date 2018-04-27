@@ -62,5 +62,9 @@ tidyData <- function() {
   tidyDataMean <- group_by(mstdTT, subjects, activities)
   tidyDataMean <- summarize_all(tidyDataMean, mean)
   
-  return(write.table(tidyDataMean, row.names = FALSE, file = "tidy_data.txt"))
+  if(!file.exists("tidy_data.txt")) {
+    return(write.table(tidyDataMean, row.names = FALSE, file = "tidy_data.txt"))
+  } else {
+    print("tidy_data.txt already exists in this directory")
+  }
 }
